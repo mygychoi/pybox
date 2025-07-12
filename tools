@@ -1,5 +1,28 @@
-#! /bin/bash
+#!/bin/bash
 
-uv run ruff check --fix
-uv run ruff format
-uv run pyrefly check
+command=$1
+
+function src() {
+  uv run ruff check --fix
+  uv run ruff format
+  uv run pyrefly check
+}
+
+function infra() {
+  helm lint infra/charts/pybox
+  helm template infra/charts/pybox > /dev/null
+}
+
+case $command in
+  "src")
+    src
+    ;;
+  "infra")
+    infra
+    ;;
+  *)
+    exit 1
+    ;;
+esac
+
+

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "pybox.fullname" . }}-deployment
+  labels: {{- include "pybox.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.autoscaling.minReplicas }}
+  selector:
+    matchLabels: {{- include "pybox.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels: {{- include "pybox.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.config.port }}
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: {{ include "pybox.fullname" . }}-config
+          resources: {{- toYaml .Values.resources | nindent 12 }}

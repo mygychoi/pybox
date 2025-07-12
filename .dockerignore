@@ -1,0 +1,68 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+build
+develop-eggs
+dist
+downloads
+eggs
+.eggs
+lib
+lib64
+parts
+sdist
+var
+wheels
+*.egg-info
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation
+README.md
+docs/
+
+# Tests
+tests/
+.pytest_cache/
+.coverage
+.tox/
+
+# Linting
+.ruff_cache/
+
+# Development tools
+tools
+
+# Infrastructure (already in container)
+infra/
+
+# Cache directories
+.cache/
+.mypy_cache/
+
+# Local development files
+.env
+.env.local

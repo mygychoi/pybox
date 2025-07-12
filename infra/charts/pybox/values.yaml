@@ -1,0 +1,36 @@
+image:
+  repository: pybox
+  tag: "latest"
+  pullPolicy: Never
+
+config:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 4
+
+service:
+  type: NodePort
+  port: 8000
+
+ingress:
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  hosts:
+    - host: localhost
+      paths:
+        - path: /
+          pathType: Prefix
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi
+
+autoscaling:
+  minReplicas: 2
+  maxReplicas: 4
+  cpuUtil: 80
