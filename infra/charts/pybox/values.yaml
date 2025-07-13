@@ -1,6 +1,6 @@
 image:
   repository: pybox
-  tag: "537fdd6"
+  tag: "8b825ad"
   pullPolicy: Never
 config:
   host: "0.0.0.0"
