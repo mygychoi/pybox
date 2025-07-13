@@ -13,12 +13,28 @@ function infra() {
   helm template infra/charts/pybox > /dev/null
 }
 
+function cicd() {
+  VALUES="infra/charts/pybox/values.yaml"
+  COMMIT=$(git rev-parse --short HEAD)
+  
+  docker build -t pybox:$COMMIT .
+  
+  yq e ".image.tag = \"$COMMIT\"" -i $VALUES
+  
+  git add $VALUES
+  git commit -m "Build image pybox:$COMMIT"
+  git push
+}
+
 case $command in
   "src")
     src
     ;;
   "infra")
     infra
+    ;;
+  "cicd")
+    cicd
     ;;
   *)
     exit 1
