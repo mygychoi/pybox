@@ -1,17 +1,14 @@
 image:
   repository: pybox
-  tag: "latest"
+  tag: "537fdd6"
   pullPolicy: Never
-
 config:
   host: "0.0.0.0"
   port: 8000
   workers: 4
-
 service:
   type: NodePort
   port: 8000
-
 ingress:
   className: nginx
   annotations:
@@ -21,7 +18,6 @@ ingress:
       paths:
         - path: /pybox
           pathType: Prefix
-
 resources:
   requests:
     cpu: 100m
@@ -29,7 +25,6 @@ resources:
   limits:
     cpu: 200m
     memory: 256Mi
-
 autoscaling:
   minReplicas: 2
   maxReplicas: 4
