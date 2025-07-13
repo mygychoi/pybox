@@ -19,7 +19,7 @@ ingress:
   hosts:
     - host: localhost
       paths:
-        - path: /
+        - path: /pybox
           pathType: Prefix
 
 resources:
