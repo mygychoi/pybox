@@ -30,8 +30,6 @@ Common labels
 {{- define "pybox.labels" -}}
 chartname: {{ .Chart.Name }}
 chartversion: {{ .Chart.Version }}
-releasename: {{ .Release.Name }}
-releaseversion: {{ .Release.Version }}
 {{- end }}
 
 {{/*
